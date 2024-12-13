@@ -2,9 +2,12 @@ import React from 'react';
 import { CartIcon } from '../constants/icons';
 import styled from 'styled-components';
 import { useSelector } from 'react-redux';
+import { cartSlice } from '../store/zustand';
 
 function Navbar() {
-  const { amount } = useSelector((state) => state.cart);
+  // const { amount } = useSelector((state) => state.cart);
+  const { amount } = cartSlice();
+
   return (
     <Container>
       <h1>PLAYLIST</h1>

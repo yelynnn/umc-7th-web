@@ -5,17 +5,17 @@ import { clearCart } from '../features/cart/cartSlice';
 import { closeModal } from '../features/modal/modalSlice';
 
 function Modal() {
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
   return (
     <Dialog>
       <Alert>정말 초기화하시겠습니까?</Alert>
       <Buttons>
-        <No onClick={() => dispatch(closeModal())}>아니오</No>
+        <No onClick={() => closeModal()}>아니오</No>
         <Yes
           onClick={() => {
-            dispatch(clearCart());
-            dispatch(closeModal());
+            clearCart();
+            closeModal();
           }}
         >
           네

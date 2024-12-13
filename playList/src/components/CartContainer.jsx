@@ -3,11 +3,14 @@ import styled from 'styled-components';
 import CartItem from './CartItem';
 import { useDispatch, useSelector } from 'react-redux';
 import { openModal } from '../features/modal/modalSlice';
+import { cartSlice, ModalStore } from '../store/zustand';
 
 function CartContainer() {
-  const { cartItems, total } = useSelector((store) => store.cart);
+  // const { cartItems, total } = useSelector((store) => store.cart);
+  const { cartItems, total } = cartSlice();
+  const { openModal } = ModalStore();
 
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
   return (
     <section>
       <Header>
@@ -24,7 +27,7 @@ function CartContainer() {
         <h3>\ {total}원</h3>
       </Total>
       <ButtonContainer>
-        <Button onClick={() => dispatch(openModal())}>장바구니 초기화</Button>
+        <Button onClick={() => openModal()}>장바구니 초기화</Button>
       </ButtonContainer>
     </section>
   );

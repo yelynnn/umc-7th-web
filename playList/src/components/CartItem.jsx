@@ -5,7 +5,7 @@ import { useDispatch } from 'react-redux';
 import { decrease, increase, removeItem } from '../features/cart/cartSlice';
 
 function CartItem({ id, img, title, singer, price, amount }) {
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
   return (
     <Container>
       <New>
@@ -20,15 +20,15 @@ function CartItem({ id, img, title, singer, price, amount }) {
         </BoxContainer>
       </New>
       <AmountContainer>
-        <ChevronUp onClick={() => dispatch(increase(id))} />
+        <ChevronUp onClick={() => increase(id)} />
         <Title>{amount}</Title>
         <ChevronDown
           onClick={() => {
             if (amount === 1) {
-              dispatch(removeItem(id));
+              removeItem(id);
               return;
             }
-            dispatch(decrease(id));
+            decrease(id);
           }}
         />
       </AmountContainer>
@@ -44,6 +44,7 @@ const New = styled.div`
 const Container = styled.div`
   display: flex;
   width: 900px;
+
   height: 70px;
   justify-content: space-between;
   margin-bottom: 30px;

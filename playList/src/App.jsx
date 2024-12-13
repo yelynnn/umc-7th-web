@@ -6,17 +6,23 @@ import { useDispatch, useSelector } from 'react-redux';
 import { calculateTotals } from './features/cart/cartSlice';
 import ModalPortal from './components/ModalPortal';
 import Modal from './components/modal';
-import { useStore } from 'zustand';
+import { cartSlice, ModalStore } from './store/zustand';
 
 function App() {
-  const dispatch = useDispatch();
-  const { cartItems } = useSelector((store) => store.cart);
-  const { isOpen } = useSelector((store) => store.modal);
-  //  const isOpen = useStore((state) => state.isOpen);
+  // const dispatch = useDispatch();
+  // const { cartItems } = useSelector((store) => store.cart);
+  // const { isOpen } = useSelector((store) => store.modal);
+  const { isOpen } = ModalStore();
+  const { cartItems, calculateTotals } = cartSlice();
+
+  // useEffect(() => {
+  //   dispatch(calculateTotals());
+  // }, [cartItems, dispatch]);
 
   useEffect(() => {
-    dispatch(calculateTotals());
-  }, [cartItems, dispatch]);
+    calculateTotals();
+  }, [cartItems]);
+
   return (
     <Container>
       <Navbar />
